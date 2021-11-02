@@ -17,6 +17,7 @@
 #include <stdint.h>
 #include <Arduino.h>
 #include <SPI.h>
+#include <String.h>
 
 #ifndef MFRC522_SPICLOCK
 #define MFRC522_SPICLOCK (4000000u)	// MFRC522 accept upto 10MHz, set to 4MHz.
@@ -345,7 +346,7 @@ public:
 	// Support functions for debuging
 	void PCD_DumpVersionToSerial();
 	void PICC_DumpToSerial(Uid *uid);
-	string PICC_DumpUID(Uid *uid);
+	String PICC_DumpUID(Uid *uid);
 	void PICC_DumpDetailsToSerial(Uid *uid);
 	void PICC_DumpMifareClassicToSerial(Uid *uid, PICC_Type piccType, MIFARE_Key *key);
 	void PICC_DumpMifareClassicSectorToSerial(Uid *uid, MIFARE_Key *key, byte sector);
