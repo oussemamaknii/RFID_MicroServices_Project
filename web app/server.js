@@ -63,7 +63,33 @@ app.use(function (err, req, res, next) {
   res.send(err.message);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
-  console.log("Server is started on http://127.0.0.1:" + PORT);
+const PORT = process.env.PORT || 3080;
+
+var server = require("http")
+  .createServer(app)
+  .listen(PORT, function () {
+    console.log("Server is started on http://127.0.0.1:" + PORT);
+  });
+const io = require("socket.io")(server);
+
+io.on("connection", (socket) => {
+  var python_process;
+  socket.on("driver", (msg) => {
+    let options = {
+      pythonPath:
+        "C:\\Users\\souso\\AppData\\Local\\Programs\\Python\\Python310\\python",
+    };
+
+    let { PythonShell } = require("python-shell");
+    python_process = PythonShell.run(
+      "driver.py",
+      options,
+      function (err, results) {
+        if (err) throw err;
+      }
+    );
+  });
+  socket.on("disconnect", function () {
+    python_process.kill("SIGINT");
+  });
 });
