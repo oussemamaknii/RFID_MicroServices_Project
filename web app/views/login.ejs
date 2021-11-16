@@ -7,13 +7,14 @@
 	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+	<link href="https://releases.transloadit.com/uppy/v2.2.3/uppy.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="./css/main.css">
-
 	
     <script type="text/javascript">
 	  var socket = io();
 	  window.onload = function() {
-	    socket.emit("driver");
+	    //socket.emit("driver");
 	  };
 	</script>
 
@@ -59,6 +60,7 @@
 			<form id="form" method="post" >
 				<input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br/>
 				<input type="password" name="password" placeholder="Password" required="" class="form-control"><br/>
+				<div id ="drag-drop-area"></div>
 				<input type="submit" value="Login" class="btn btn-success">
 			</form>
 		</div>
@@ -73,5 +75,28 @@
 		</div>
 		
 	</div>
+	<script src="https://releases.transloadit.com/uppy/v2.2.3/uppy.min.js"></script>
+    <script>
+      var uppy = new Uppy.Core()
+        .use(Uppy.Dashboard, {
+          inline: true,
+          target: '#drag-drop-area'
+        })
+		.use(Uppy.Webcam,{target:Uppy.Dashboard})
+		.use(Uppy.XHRUpload,{
+			endpoint: 'http://127.0.0.1:3080/check-face',
+			fieldName: 'File1',
+			formData: true, 
+			timeout:60000,
+			headers:{
+				'Access-Control-Allow-Origin': 'origin-list'
+			}
+		});
+		
+		uppy.on('upload-success', (file,response) => {
+		  const label = response.body._label;
+		  // do something with file and response
+		});
+	</script>
 </body>
 </html>
