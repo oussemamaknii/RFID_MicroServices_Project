@@ -15,15 +15,20 @@
 	  var socket = io();
 	  window.onload = function() {
 	    //socket.emit("driver");
+		  let button = document.querySelector("#button");
+		  button.disabled = true;
 	  };
 	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-
 			$( "#form" ).submit(function(event) {
 				event.preventDefault();
-
+				console.log(document.querySelector('#lab').value);
+				console.log(document.querySelector('#email').value);
+				console.log(document.querySelector('#email').value === document.querySelector('#lab').value);
+				if(document.querySelector('#lab').value === document.querySelector('#email').value)
+				{
 				$.ajax({
 					type: 'POST',
 					url: '/login',
@@ -45,9 +50,13 @@
          				},
          				error: function() {
          				}
-         			})
-			});
+         			})}
+					else {
+						let button = document.querySelector("#button");
+		  				button.disabled = true;
+					}
 
+			});
 		});
 	</script>
 </head>
@@ -58,10 +67,12 @@
 		</div>
 		<div class="form-group">
 			<form id="form" method="post" >
-				<input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br/>
-				<input type="password" name="password" placeholder="Password" required="" class="form-control"><br/>
+				<input type="text" id="email" name="email" placeholder="E-mail" required="" class="form-control"><br/>
+				<input type="password" name="password" placeholder="Password" required="" class="form-control">
+				<input type="hidden" id="lab" name="g_label"><br/>				
 				<div id ="drag-drop-area"></div>
-				<input type="submit" value="Login" class="btn btn-success">
+				<p id="errp"></p>
+				<input type="submit" id="button" value="Login" class="btn btn-success">
 			</form>
 		</div>
 		<div class="mssg bg-danger">
@@ -87,15 +98,32 @@
 			endpoint: 'http://127.0.0.1:3080/check-face',
 			fieldName: 'File1',
 			formData: true, 
-			timeout:60000,
+			timeout:120000,
 			headers:{
 				'Access-Control-Allow-Origin': 'origin-list'
 			}
 		});
 		
 		uppy.on('upload-success', (file,response) => {
-		  const label = response.body._label;
-		  // do something with file and response
+		  const label = response.body.result;
+		  let button = document.querySelector('#button');
+		  let err = document.querySelector("#errp");
+		  button.disabled = true;
+		  err.value='';
+		  if (label.length === 0) {
+		  	button.disabled = true;			
+			err.value='retake your picture in better conditions !';  
+		  }else{
+			err.value='';  
+			if (label[0]._label === 'unknown') {
+				button.disabled = true;
+				err.value='unknown ! retry';  
+			}
+			else{
+				document.querySelector('#lab').value = label[0]._label;
+		  		button.disabled = false;
+			}
+		  }
 		});
 	</script>
 </body>
