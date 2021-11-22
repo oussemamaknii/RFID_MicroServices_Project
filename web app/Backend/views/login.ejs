@@ -14,7 +14,7 @@
     <script type="text/javascript">
 	  var socket = io();
 	  window.onload = function() {
-	    //socket.emit("driver");
+	      //socket.emit("driver");
 		  let button = document.querySelector("#button");
 		  button.disabled = true;
 	  };
@@ -88,7 +88,13 @@
 	</div>
 	<script src="https://releases.transloadit.com/uppy/v2.2.3/uppy.min.js"></script>
     <script>
-      var uppy = new Uppy.Core()
+      var uppy = new Uppy.Core({
+        restrictions: {
+          maxFileSize: 1000000, // 1mb
+          maxNumberOfFiles: 1,
+          minNumberOfFiles: 1,
+        },
+      })
         .use(Uppy.Dashboard, {
           inline: true,
           target: '#drag-drop-area'
@@ -99,6 +105,7 @@
 			fieldName: 'File1',
 			formData: true, 
 			timeout:120000,
+          	limit: 1,
 			headers:{
 				'Access-Control-Allow-Origin': 'origin-list'
 			}

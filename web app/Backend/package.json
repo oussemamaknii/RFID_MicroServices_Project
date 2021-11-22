@@ -13,6 +13,7 @@
     "face-api.js": "^0.22.2",
     "mongoose": "^5.6.10",
     "nodemon": "^2.0.14",
+    "pug": "^3.0.2",
     "python-shell": "^3.0.1",
     "socket.io": "^4.3.2",
     "uppy": "^2.2.3"

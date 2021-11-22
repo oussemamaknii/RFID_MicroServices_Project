@@ -69,9 +69,15 @@ app.use(
 async function LoadModels() {
   // Load the models
   // __dirname gives the root directory of the server
-  await faceapi.nets.faceRecognitionNet.loadFromDisk(__dirname + "/models/face_models");
-  await faceapi.nets.faceLandmark68Net.loadFromDisk(__dirname + "/models/face_models");
-  await faceapi.nets.ssdMobilenetv1.loadFromDisk(__dirname + "/models/face_models");
+  await faceapi.nets.faceRecognitionNet.loadFromDisk(
+    __dirname + "/models/face_models"
+  );
+  await faceapi.nets.faceLandmark68Net.loadFromDisk(
+    __dirname + "/models/face_models"
+  );
+  await faceapi.nets.ssdMobilenetv1.loadFromDisk(
+    __dirname + "/models/face_models"
+  );
 }
 
 LoadModels();
@@ -159,17 +165,28 @@ async function getDescriptorsFromDB(image) {
   return results;
 }
 
-app.post("/post-face", async (req, res) => {
-  const File1 = req.files.File1.tempFilePath;
-  const File2 = req.files.File2.tempFilePath;
-  const File3 = req.files.File3.tempFilePath;
-  const label = req.body.label;
-  let result = await uploadLabeledImages([File1, File2, File3], label);
-  if (result) {
-    res.json({ message: "Face data stored successfully" });
-  } else {
-    res.json({ message: "Something went wrong, please try again." });
+var fi = [];
+var label = "";
+
+app.post("/post-label", async (req, res) => {
+  if (req.body) {
+    label = req.body.label;
   }
+});
+
+app.post("/post-face", async (req, res) => {
+  console.log(label);
+  if (req.files) {
+    fi.push(req.files.file.tempFilePath);
+  }
+  if (fi.length === 3) {
+    let result = await uploadLabeledImages(fi, label);
+    if (result) {
+      res.json({ message: "Face data stored successfully" });
+    } else {
+      res.json({ message: "Something went wrong, please try again." });
+    }
+  } else res.json({ message: "ok" });
 });
 
 app.post("/check-face", async (req, res) => {
