@@ -13,6 +13,14 @@ const canvas = require("canvas");
 const fileUpload = require("express-fileupload");
 faceapi.env.monkeyPatch({ Canvas, Image });
 
+//axelib
+
+var createError = require('http-errors');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+
 mongoose.connect(
   "mongodb+srv://rfid-project:rfid-project@rfid-project.4f7zj.mongodb.net/test",
   {
@@ -49,10 +57,21 @@ app.set("view engine", "ejs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(__dirname + "/views"));
+//axelib
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-var index = require("./routes/index");
-app.use("/", index);
+app.use(express.static(__dirname + "/views"));
+app.use(express.static(path.join(__dirname, 'public')));//public axelib
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+//oussema
+/*var index = require("./routes/index");
+app.use("/", index);*/
 
 // error handler
 // define as the last app.use callback
@@ -209,4 +228,20 @@ io.on("connection", (socket) => {
   socket.on("disconnect", function () {
     //python_process.kill("SIGINT");
   });
+
+  // catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 });

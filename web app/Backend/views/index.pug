@@ -1,0 +1,638 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Axelib
+  link(rel='stylesheet', href='https://unpkg.com/swiper@7/swiper-bundle.min.css')
+  // font awesome cdn link
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css')
+  // custom css file link
+  link(rel='stylesheet', href='stylesheets/style.css')
+// header section starts
+header.header
+  .header-1
+    a.logo(href='#')
+      i.fas.fa-book
+      |  Axelib
+    form.search-form(action='')
+      input#search-box(type='search', name='', placeholder='Entrez votre recherche...')
+      label.fas.fa-search(for='search-box')
+    .icons
+      #search-btn.fas.fa-search
+      a.fas.fa-heart(href='#')
+      a.fas.fa-shopping-cart(href='#')
+      #login-btn.fas.fa-user
+      #register-btn.fas.fa-user
+  .header-2
+    nav.navbar
+      a(href='#home') acceuil
+      a(href='#featured') vedette
+      a(href='#arrivals') nouveautes
+      a(href='#reviews') revues
+      a(href='#blogs') blogs
+// header section ends
+// bottom navbar
+nav.bottom-navbar
+  a.fas.fa-home(href='#home')
+  a.fas.fa-list(href='#featured')
+  a.fas.fa-tags(href='#arrivals')
+  a.fas.fa-comments(href='#reviews')
+  a.fas.fa-blog(href='#blogs')
+// login form
+.login-form-container
+  #close-login-btn.fas.fa-times
+  form(action='')
+    h3 s'identifier
+    span pseudo
+    input.box(type='email', name='', placeholder='entrez votre email', id='')
+    span mot de passe
+    input.box(type='password', name='', placeholder='entrez votre mot de passe', id='')
+    .checkbox
+      input#remember-me(type='checkbox', name='')
+      label(for='remember-me')  se souvenir de moi
+    input.btn(type='submit', value='s identifier')
+    p
+      | mot de passe oublie?? 
+      a(href='#')  ici
+    p
+      | pas de compte ? 
+      a(href='#register-btn') creez-en 
+
+      // register form
+.register-form-container
+  #close-register-btn.fas.fa-times
+  form(action='')
+    h3 creer un compte
+    span nom
+    input.box(type='text', name='', placeholder='entrez votre nom', id='')
+    span prenom
+    input.box(type='text', name='', placeholder='entrez votre prenom', id='')
+    span sexe
+    input.box(type='checkbox', name='', id='')
+    span age
+    input.box(type='number', name='', placeholder='entrez votre age', id='')
+    span pseudo
+    input.box(type='email', name='', placeholder='entrez votre pseudo', id='')
+    span mot de passe
+    input.box(type='password', name='', placeholder='entrez votre mot de passe', id='')
+    span confirmez mot de passe
+    input.box(type='password', name='', placeholder='confirmez votre mot de passe', id='')
+    .checkbox
+      input#remember-me(type='checkbox', name='')
+      label(for='remember-me')  se souvenir de moi
+    input.btn(type='submit', value='je m inscris')
+// home section starts
+section#home.home
+  .row
+    .content
+      h3 upto 75% off
+      p
+        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias sit necessitatibus, aliquid ex minima at!
+      a.btn(href='#') Achetez maintenant
+    .swiper.books-slider
+      .swiper-wrapper
+        a.swiper-slide(href='#')
+          img(src='images/book-1.png', alt='')
+        a.swiper-slide(href='#')
+          img(src='images/book-2.png', alt='')
+        a.swiper-slide(href='#')
+          img(src='images/book-3.png', alt='')
+        a.swiper-slide(href='#')
+          img(src='images/book-4.png', alt='')
+        a.swiper-slide(href='#')
+          img(src='images/book-5.png', alt='')
+        a.swiper-slide(href='#')
+          img(src='images/book-6.png', alt='')
+      img.stand(src='images/stand.png', alt='')
+// home section ense
+// icons section starts
+section.icons-container
+  .icons
+    i.fas.fa-shipping-fast
+    .content
+      h3 retour gratuit
+      p commande de plus de 100 dt 
+  .icons
+    i.fas.fa-lock
+    .content
+      h3 paiement sécurisé
+      p 100 paiement sécurisé
+  .icons
+    i.fas.fa-redo-alt
+    .content
+      h3 retours simple
+      p retour apres 10 jours
+  .icons
+    i.fas.fa-headset
+    .content
+      h3 Assistance 24h/24 et 7j/7
+      p appelez-nous à tout moment
+// icons section ends
+// featured section starts
+section#featured.featured
+  h1.heading
+    span livres en vedette
+  .swiper.featured-slider
+    .swiper-wrapper
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-1.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-2.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-3.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-4.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-5.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span $20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-6.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | $15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-7.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-8.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-9.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span dt 20.99
+          a.btn(href='#') ajoutez au panier
+      .swiper-slide.box
+        .icons
+          a.fas.fa-search(href='#')
+          a.fas.fa-heart(href='#')
+          a.fas.fa-eye(href='#')
+        .image
+          img(src='images/book-10.png', alt='')
+        .content
+          h3 livres en vedette
+          .price
+            | dt 15.99 
+            span $20.99
+          a.btn(href='#') ajoutez au panier
+    .swiper-button-next
+    .swiper-button-prev
+// featured section ends
+// newsletter section starts
+section.newsletter
+  form(action='')
+    h3 abonnez-vous pour les dernières mises à jour
+    input.box(type='email', name='', placeholder='entrez votre email', id='')
+    input.btn(type='submit', value='souscrivez')
+// newsletter section ends
+// arrivals section starts
+section#arrivals.arrivals
+  h1.heading
+    span nouveautes
+  .swiper.arrivals-slider
+    .swiper-wrapper
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-1.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-2.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-3.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-4.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-5.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+  .swiper.arrivals-slider
+    .swiper-wrapper
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-6.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-7.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-8.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-9.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | $15.99 
+            span $20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+      a.swiper-slide.box(href='#')
+        .image
+          img(src='images/book-10.png', alt='')
+        .content
+          h3 nouveautes
+          .price
+            | dt 15.99 
+            span dt 20.99
+          .stars
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star
+            i.fas.fa-star-half-alt
+// arrivals section ends
+// deal section starts
+section.deal
+  .content
+    h3 l'affaire du jour
+    h1 jusqu'à 50% de réduction
+    p
+      | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde perspiciatis in atque dolore tempora quaerat at fuga dolorum natus velit.
+    a.btn(href='#') Achetez maintenant
+  .image
+    img(src='images/deal-img.jpg', alt='')
+// deal section ends
+// reviews section starts
+section#reviews.reviews
+  h1.heading
+    span Commentaires
+  .swiper.reviews-slider
+    .swiper-wrapper
+      .swiper-slide.box
+        img(src='images/pic-1.png', alt='')
+        h3 john deo
+        p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.
+        .stars
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star-half-alt
+      .swiper-slide.box
+        img(src='images/pic-2.png', alt='')
+        h3 john deo
+        p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.
+        .stars
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star-half-alt
+      .swiper-slide.box
+        img(src='images/pic-3.png', alt='')
+        h3 john deo
+        p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.
+        .stars
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star-half-alt
+      .swiper-slide.box
+        img(src='images/pic-4.png', alt='')
+        h3 john deo
+        p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.
+        .stars
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star-half-alt
+      .swiper-slide.box
+        img(src='images/pic-5.png', alt='')
+        h3 john deo
+        p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.
+        .stars
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star-half-alt
+      .swiper-slide.box
+        img(src='images/pic-6.png', alt='')
+        h3 john deo
+        p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur nihil ipsa placeat. Aperiam at sint, eos ex similique facere hic.
+        .stars
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star
+          i.fas.fa-star-half-alt
+// reviews section ends
+// blogs section starts
+section#blogs.blogs
+  h1.heading
+    span Nos blogs
+  .swiper.blogs-slider
+    .swiper-wrapper
+      .swiper-slide.box
+        .image
+          img(src='images/blog-1.jpg', alt='')
+        .content
+          h3 blog title goes here
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, odio.
+          a.btn(href='#') en savoir plus
+      .swiper-slide.box
+        .image
+          img(src='images/blog-2.jpg', alt='')
+        .content
+          h3 blog title goes here
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, odio.
+          a.btn(href='#') en savoir plus
+      .swiper-slide.box
+        .image
+          img(src='images/blog-3.jpg', alt='')
+        .content
+          h3 blog title goes here
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, odio.
+          a.btn(href='#') en savoir plus
+      .swiper-slide.box
+        .image
+          img(src='images/blog-4.jpg', alt='')
+        .content
+          h3 blog title goes here
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, odio.
+          a.btn(href='#') en savoir plus
+      .swiper-slide.box
+        .image
+          img(src='images/blog-5.jpg', alt='')
+        .content
+          h3 blog title goes here
+          p Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, odio.
+          a.btn(href='#') en savoir plus
+// blogs section ends
+// footer section starts
+section.footer
+  .box-container
+    .box
+      h3 nos emplacements
+      a(href='#')
+        i.fas.fa-map-marker-alt
+        |  inde
+      a(href='#')
+        i.fas.fa-map-marker-alt
+        |  USA
+      a(href='#')
+        i.fas.fa-map-marker-alt
+        |  russie
+      a(href='#')
+        i.fas.fa-map-marker-alt
+        |  france
+      a(href='#')
+        i.fas.fa-map-marker-alt
+        |  japon
+      a(href='#')
+        i.fas.fa-map-marker-alt
+        |  cameroun
+    .box
+      h3 Liens rapides
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  acceuil
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  vedette
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  nouveautes
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  revue
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  blogs
+    .box
+      h3 extra links
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  informations de compte
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  articles commandés
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  politique de confidentialité
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  mode de paiement
+      a(href='#')
+        i.fas.fa-arrow-right
+        |  nos services
+    .box
+      h3 contacts
+      a(href='#')
+        i.fas.fa-phone
+        |  +21655675265
+      a(href='#')
+        i.fas.fa-phone
+        |  +21612345678
+      a(href='#')
+        i.fas.fa-envelope
+        |  axelib@gmail.com
+      img.map(src='images/worldmap.png', alt='')
+  .share
+    a.fab.fa-facebook-f(href='#')
+    a.fab.fa-twitter(href='#')
+    a.fab.fa-instagram(href='#')
+    a.fab.fa-linkedin(href='#')
+    a.fab.fa-pinterest(href='#')
+  .credit
+    | created by 
+    span axelib
+    |  | all rights reserved!
+// footer section ends
+// loader
+.loader-container
+  img(src='images/loader-img.gif', alt='')
+script(src='https://unpkg.com/swiper@7/swiper-bundle.min.js')
+// custom js file link
+script(src='javascripts/script.js')
