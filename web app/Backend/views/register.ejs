@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link
+      href="https://releases.transloadit.com/uppy/v2.2.3/uppy.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <script type="text/javascript">
+      window.onload = function () {
+        let button = document.querySelector("#button");
+        button.disabled = true;
+      };
+
+      $(document).ready(function () {
+        $("#form1").submit(function (event) {
+          event.preventDefault();
+
+          $.ajax({
+            type: "POST",
+            url: "/",
+            data: $("#form1").serialize(),
+            dataType: "json",
+            success: function (response) {
+              //alert("a");
+              //console.log(response.Success);
+              $("#form1")[0].reset();
+
+              document.getElementById("check").innerHTML = response.Success;
+              //ADD THIS CODE
+              setTimeout(function () {
+                document.getElementById("check").innerHTML = "";
+              }, 3000);
+              if (response.Success == "You are regestered,You can login now.") {
+                document.getElementById("aa").click();
+              }
+            },
+            error: function () {},
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="col-md-4 col-md-offset-4">
+      <div>
+        <p>Register Now</p>
+      </div>
+      <div class="form-group">
+        <form id="form1" method="post">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="E-mail"
+            required=""
+            class="form-control"
+          /><br />
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            required=""
+            class="form-control"
+          /><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required=""
+            class="form-control"
+          /><br />
+          <input
+            type="password"
+            name="passwordConf"
+            placeholder="Confirm Password"
+            required=""
+            class="form-control"
+          /><br />
+          <input type="hidden" id="lab" name="g_label" /><br />
+          <div id="drag-drop-area"></div>
+          <p id="errp"></p>
+          <input
+            type="submit"
+            id="button"
+            value="Register"
+            class="btn btn-success"
+          />
+        </form>
+      </div>
+
+      <div class="mssg bg-danger">
+        <span id="check"></span>
+      </div>
+      <div>
+        <span>Already Registered! <a href="/login">Login</a></span>
+      </div>
+      <div id="LangTable"><a href="/login" id="aa"></a></div>
+    </div>
+    <script src="https://releases.transloadit.com/uppy/v2.2.3/uppy.min.js"></script>
+    <script>
+      const email = document.querySelector("#email");
+      var reeq = "http://127.0.0.1:3080/post-face";
+      var result = "";
+      email.addEventListener("change", (event) => {
+        result = event.target.value;
+        console.log(result);
+      });
+      var uppy = new Uppy.Core({
+        restrictions: {
+          maxFileSize: 1000000, // 1mb
+          maxNumberOfFiles: 3,
+          minNumberOfFiles: 1,
+        },
+        meta: { label: result },
+      })
+        .use(Uppy.Dashboard, {
+          inline: true,
+          target: "#drag-drop-area",
+          note: "Images only, 3 files, up to 1 MB",
+          metaFields: [
+            { id: "name", name: "Name", placeholder: "file name" },
+            {
+              id: "caption",
+              name: "Caption",
+              placeholder: "describe what the image is about",
+            },
+          ],
+        })
+        .use(Uppy.Webcam, { target: Uppy.Dashboard })
+        .use(Uppy.XHRUpload, {
+          endpoint: reeq,
+          formData: true,
+          fieldName: "file",
+          timeout: 240000,
+          headers: {
+            "Access-Control-Allow-Origin": "origin-list",
+          },
+        });
+      uppy.on("upload", () => {
+        var url = "http://127.0.0.1:3080/post-label";
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+
+        //Send the proper header information along with the request
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+
+        xhr.onreadystatechange = function () {
+          // Call a function when the state changes.
+          if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+          }
+        };
+        xhr.send("label=" + result);
+      });
+
+      uppy.on("upload-success", (file, response) => {
+        const label = response.body.result;
+        if (label["message"] == "Face data stored successfully") {
+          button.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
