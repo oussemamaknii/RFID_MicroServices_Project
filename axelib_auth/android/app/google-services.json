@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "79014052951",
+    "project_id": "axelib-e8264",
+    "storage_bucket": "axelib-e8264.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79014052951:android:9effa3ca6cb4af9dcecf12",
+        "android_client_info": {
+          "package_name": "com.example.axelib_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79014052951-1e181q3ou29u76c75dtd37768gr7heed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeL2_w1QdpiWdB7mPV05sosfAMmtLcXVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79014052951-1e181q3ou29u76c75dtd37768gr7heed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
