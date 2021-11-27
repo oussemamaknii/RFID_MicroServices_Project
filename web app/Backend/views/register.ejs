@@ -19,11 +19,9 @@
         let button = document.querySelector("#button");
         button.disabled = true;
       };
-
       $(document).ready(function () {
         $("#form1").submit(function (event) {
           event.preventDefault();
-
           $.ajax({
             type: "POST",
             url: "/",
@@ -33,7 +31,6 @@
               //alert("a");
               //console.log(response.Success);
               $("#form1")[0].reset();
-
               document.getElementById("check").innerHTML = response.Success;
               //ADD THIS CODE
               setTimeout(function () {
@@ -118,7 +115,7 @@
         restrictions: {
           maxFileSize: 1000000, // 1mb
           maxNumberOfFiles: 3,
-          minNumberOfFiles: 1,
+          minNumberOfFiles: 3,
         },
         meta: { label: result },
       })
@@ -149,13 +146,11 @@
         var url = "http://127.0.0.1:3080/post-label";
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
-
         //Send the proper header information along with the request
         xhr.setRequestHeader(
           "Content-Type",
           "application/x-www-form-urlencoded"
         );
-
         xhr.onreadystatechange = function () {
           // Call a function when the state changes.
           if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -164,10 +159,11 @@
         };
         xhr.send("label=" + result);
       });
-
       uppy.on("upload-success", (file, response) => {
-        const label = response.body.result;
+        const label = response.body;
+        console.log(label);
         if (label["message"] == "Face data stored successfully") {
+          let button = document.querySelector("#button");
           button.disabled = false;
         }
       });
