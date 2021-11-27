@@ -60,6 +60,10 @@ router.get("/login", function (req, res, next) {
   return res.render("login.ejs");
 });
 
+router.get("/register", function (req, res, next) {
+  return res.render("register.ejs");
+});
+
 router.post("/login", function (req, res, next) {
   //console.log(req.body);
   User.findOne({ email: req.body.email }, function (err, data) {
