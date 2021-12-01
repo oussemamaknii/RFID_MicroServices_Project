@@ -1,0 +1,5 @@
+com\esprit\microservice\Book.class
+com\esprit\microservice\BookApplication.class
+com\esprit\microservice\BookService.class
+com\esprit\microservice\BookRepository.class
+com\esprit\microservice\BookRestAPI.class
