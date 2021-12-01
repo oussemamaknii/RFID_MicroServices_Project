@@ -1,0 +1,6 @@
+Filtres\ErrorFilter.class
+com\example\demo\ZuulGatewayApplication.class
+Filtres\RouteFilter.class
+Filtres\AuthorizationHeaderFilter.class
+Filtres\PreFilter.class
+Filtres\PostFilter.class
