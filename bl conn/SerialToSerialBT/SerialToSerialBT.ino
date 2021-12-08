@@ -50,5 +50,6 @@ void loop()
     return;
 
   printHex(rfid.uid.uidByte, rfid.uid.size);
+  rfid.MIFARE_Write();
   delay(3000);
 }

@@ -1,0 +1,9 @@
+FROM openjdk:11
+
+EXPOSE 8080
+
+CMD java -classpath src/main/java AxelibApplication com.axelib
+
+ADD /target/Axelib-0.0.1.jar user-service.jar
+
+ENTRYPOINT ["java","-jar","user-service.jar"]

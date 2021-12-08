@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public onDeleteUser(userId: String | undefined): void {
+  public onDeleteUser(userId: number | undefined): void {
     this.userService.deleteUser(userId).subscribe(
       (response: any) => {
         this.getUsers();
@@ -77,7 +77,6 @@ export class AppComponent implements OnInit {
   }
 
   public onUpdateUser(user: User): void {
-    console.log(user);
     this.userService.updateUser(user).subscribe(
       (response: User) => {
         this.getUsers();
@@ -99,7 +98,6 @@ export class AppComponent implements OnInit {
     }
     if (mode === 'edit') {
       this.editUser = user;
-      console.log(this.editUser);
       button.setAttribute('data-target', '#updateuserModal');
     }
     if (mode === 'delete') {

@@ -1,9 +1,6 @@
 package com.axelib;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.websocket.server.PathParam;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,25 +23,22 @@ public class UserController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Optional<User>> getUserById(@PathVariable("id") String id) {
-        Optional<User> user = userService.findUserById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        User newUser = userService.addUser(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-        return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @RequestBody User user) {
+        return new ResponseEntity<>(userService.updateUser(id,user), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") String id) {
-        userService.deleteUser(id);
-        return new ResponseEntity<>("deleted",HttpStatus.OK);
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(userService.deleteUser(id),HttpStatus.OK);
     }
 }
