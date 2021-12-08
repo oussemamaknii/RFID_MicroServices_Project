@@ -18,12 +18,14 @@ export class UserService {
   }
 
   public updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(`${this.apiServerUrl}/User`, user);
+    return this.httpClient.put<User>(`${this.apiServerUrl}/User/${user.userId}`, user);
   }
 
-  public deleteUser(userId: String | undefined): Observable<User> {
+  public deleteUser(userId: number | undefined): Observable<User> {
+    console.log(userId);
+    
     return this.httpClient.delete<any>(
-      `${this.apiServerUrl}/User/delete/${userId}`
+      `${this.apiServerUrl}/User/${userId}`
     );
   }
 }

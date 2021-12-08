@@ -1,152 +1,106 @@
 version: "2.2"
 services:
-  candidate:
-    build: C:\Users\souso\OneDrive\Bureau\micro services\Candidate
+  
+  User_backend:
+    container_name: User
+    build: .\AxelibBackend
     ports:
-      - "8083:8084"
-    image: "candidate-service"
-    hostname: "candidate-service"
+      - "8080:8080"
+    hostname: user_back
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "client"
     depends_on:
       - Eureka
 
+  # Compte:
+  #   container_name: compte
+  #   build: .\MS-compte
+  #   ports:
+  #     - "8081:8081"
+  #   hostname: compte
+  #   environment:
+  #     - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_1:3306/comptes?autoReconnect=true&useSSL=false
+  #     - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+  #   image: "compte"
+  #   depends_on:
+  #     - Eureka
+  #     - docker-mysql_1
+ 
   Eureka:
     container_name: serviceregistry
-    build: C:\Users\souso\OneDrive\Bureau\micro services\Eureka_Server
+    build: .\Eureka_Server
     ports:
-      - "8091:8761"
-    hostname: service-registry
+      - "8761:8761"
+    hostname: serviceregistry
     image: "eureka"
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-
-
-# version: "2.2"
-# services:
   
-#   Client:
-#     container_name: client
-#     build: .\MS-Client
-#     ports:
-#       - "8082:8082"
-#     hostname: client
-#     environment:
-#       - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_2:3306/clients?autoReconnect=true&useSSL=false
-#       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-#     image: "client"
-#     depends_on:
-#       - Eureka
-#       - docker-mysql_2
-  
-  
-#   docker-mysql_2:
-#     image: "mysql:5.6"
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=fahed
-#       - MYSQL_DATABASE=clients
-#     ports:
-#       - 3308:3306
-  
-
-
-#   Compte:
-#     container_name: compte
-#     build: .\MS-compte
-#     ports:
-#       - "8081:8081"
-#     hostname: compte
-#     environment:
-#       - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_1:3306/comptes?autoReconnect=true&useSSL=false
-#       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-#     image: "compte"
-#     depends_on:
-#       - Eureka
-#       - docker-mysql_1
- 
-#   Eureka:
-#     container_name: serviceregistry
-#     build: .\Eureka-Server
-#     ports:
-#       - "8761:8761"
-#     hostname: serviceregistry
-#     image: "eureka"
-#     environment:
-#       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-    
-  
-#   docker-mysql_1:
-#     image: "mysql:5.6"
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=fahed
-#       - MYSQL_DATABASE=comptes
-#     ports:
-#       - 3307:3306
-  
-#   Zuul:
-#     container_name: Zuul
-#     image: "zuul"
-#     build: .\routing-service
-#     ports:
-#       - "8050:8050"
-#     hostname: Zuul
-#     environment:
-#       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-#     depends_on:
-#       - "Eureka"
+  Zuul:
+    container_name: Zuul
+    image: "zuul"
+    build: .\Zuul-Gateway
+    ports:
+      - "8050:8050"
+    hostname: Zuul
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    depends_on:
+      - "Eureka"
  
   
-#   Mongo:
-#     container_name: Mongo
-#     image: "mongo:5-focal"
-#     ports:
-#       - "27017:27017"
-#     hostname: Mongo
-#     depends_on:
-#       - "Eureka"
+  # Mongo:
+  #   container_name: Mongo
+  #   image: "mongo:5-focal"
+  #   ports:
+  #     - "27017:27017"
+  #   hostname: Mongo
+  #   depends_on:
+  #     - "Eureka"
   
-#   agence:
-#     container_name: agence
-#     image: "agence"
-#     build: .\MS-agence
-#     ports:
-#       - "5000:5000"
-#     hostname: agence
-#     depends_on:
-#       - "Eureka"
-#       - "Mongo"
-#     command: "node ./src/app.js"
+  # agence:
+  #   container_name: agence
+  #   image: "agence"
+  #   build: .\MS-agence
+  #   ports:
+  #     - "5000:5000"
+  #   hostname: agence
+  #   depends_on:
+  #     - "Eureka"
+  #     - "Mongo"
+  #   command: "node ./src/app.js"
 
 
-#   auth:
-#     container_name: auth
-#     image: "auth"
-#     build: .\MS-auth
-#     ports:
-#       - "7000:7000"
-#     hostname: auth
-#     depends_on:
-#       - "Eureka"
-#       - "Mongo"
-#     command: "node ./src/app.js"
+  # auth:
+  #   container_name: auth
+  #   image: "auth"
+  #   build: .\MS-auth
+  #   ports:
+  #     - "7000:7000"
+  #   hostname: auth
+  #   depends_on:
+  #     - "Eureka"
+  #     - "Mongo"
+  #   command: "node ./src/app.js"
 
 
-#   docker-mysql_3:
-#     image: "mysql:5.6"
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=fahed
-#       - MYSQL_DATABASE=operation
-#     ports:
-#       - 3309:3306
+  # docker-mysql_3:
+  #   image: "mysql:5.6"
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=fahed
+  #     - MYSQL_DATABASE=operation
+  #   ports:
+  #     - 3309:3306
   
-#   operation:
-#     container_name: operation
-#     image: "operation"
-#     build: .\MS.Operation
-#     ports:
-#       - "6000:6000"
-#     hostname: operation
-#     depends_on:
-#       - "Eureka"
-#       - "docker-mysql_3"
-#     command: "node index.js"
+  # operation:
+  #   container_name: operation
+  #   image: "operation"
+  #   build: .\MS.Operation
+  #   ports:
+  #     - "6000:6000"
+  #   hostname: operation
+  #   depends_on:
+  #     - "Eureka"
+  #     - "docker-mysql_3"
+  #   command: "node index.js"

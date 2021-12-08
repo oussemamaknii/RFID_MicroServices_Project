@@ -103,7 +103,7 @@
         </div>
         <div class="modal-body">
           <form #editForm="ngForm">
-            <input type="hidden" ngModel="{{editUser?.id}}" name="id" class="form-control" id="id">
+            <input type="hidden" ngModel="{{editUser?.userId}}" name="userId" class="form-control" id="userId">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" ngModel="{{editUser?.name}}" name="name" class="form-control" id="name"
@@ -155,7 +155,7 @@
           <p>Are you sure you want to delete User : {{deleteUser?.name}}?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <button (click)="onDeleteUser(deleteUser?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+            <button (click)="onDeleteUser(deleteUser?.userId)" class="btn btn-danger" data-dismiss="modal">Yes</button>
           </div>
         </div>
       </div>

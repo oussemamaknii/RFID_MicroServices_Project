@@ -3,6 +3,7 @@ package com.axelib;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,13 +11,22 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "MS-User")
 public class User implements Serializable {
 
-    @Id
-    @Indexed(unique = true)
-    @Field(value = "User_id")
-    private String id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    @Field(value = "Name")
+	@Id
+    private String id;    
+
+    @Transient
+    public static final String SEQUENCE_NAME = "user_sequence";
+
+	@Field(value = "Name")
     private String name;
+
+    @Field(value = "User_id")
+    private long userId;
 
     @Field(value = "Email")
     private String email;
@@ -34,21 +44,30 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String id, String name, String email, String role, String imageUrl, String uid) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        this.imageUrl = imageUrl;
-        this.uid = uid;
-    }
+    public User(String id, long userId, String name, String email, String role, String imageUrl, String uid) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.role = role;
+		this.imageUrl = imageUrl;
+		this.uid = uid;
+	}
 
     @Override
     public String toString() {
-        return "User [id=" + id + ",name=" + name + ", email=" + email + ", role=" + role + ", imageUrl=" + imageUrl + ", uid=" + uid
+        return "User [id=" + id +", user_id=" + userId + " ,name=" + name + ", email=" + email + ", role=" + role + ", imageUrl=" + imageUrl + ", uid=" + uid
                 + "]";
     }
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long l) {
+		this.userId = l;
+	}
 
     public String getId() {
         return id;

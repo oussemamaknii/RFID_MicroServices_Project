@@ -1,0 +1,3 @@
+{
+    "mongo": { "uri": "mongodb+srv://rfid-project:rfid-project@rfid-project.4f7zj.mongodb.net/test" }
+}
