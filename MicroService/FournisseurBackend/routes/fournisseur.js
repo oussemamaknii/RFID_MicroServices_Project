@@ -5,13 +5,11 @@ var fournisseur = require("../model/Fournisseur");
 router.get("/", function (req, res, next) {
   fournisseur.find(function (err, fournisseurs) {
     res.setHeader("Content-Type", "application/json");
-    console.log(fournisseurs);
     res.end(JSON.stringify(fournisseurs));
   });
 });
 
 router.post("/", function (req, res, next) {
-  console.log(req.body);
   var nbr = req.body.phone;
   new fournisseur({
     FullName: req.body.nom,

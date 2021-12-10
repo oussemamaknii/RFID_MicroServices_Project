@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import feign.auth.BasicAuthRequestInterceptor;
 
 @Configuration
-public class FeingConfig {
+public class FeignConfig {
 	@Bean
-	public BasicAuthRequestInterceptor mBasicAuthrequestInterceptor() {
+	public BasicAuthRequestInterceptor mBasicAuthRequestInterceptor() {
 		return new BasicAuthRequestInterceptor("user", "user");
 	}
 }

@@ -2,31 +2,28 @@ version: "2.2"
 services:
   
   User_backend:
-    container_name: User
+    container_name: User_backend
     build: .\AxelibBackend
     ports:
       - "8080:8080"
     hostname: user_back
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-    image: "client"
+    image: "user_back"
     depends_on:
       - Eureka
 
-  # Compte:
-  #   container_name: compte
-  #   build: .\MS-compte
-  #   ports:
-  #     - "8081:8081"
-  #   hostname: compte
-  #   environment:
-  #     - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_1:3306/comptes?autoReconnect=true&useSSL=false
-  #     - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-  #   image: "compte"
-  #   depends_on:
-  #     - Eureka
-  #     - docker-mysql_1
- 
+  # User_Frontend:
+  #   container_name: user_front
+  #   build: .\AxelibFrontend
+  #   volumes: # Volume binding
+  #       - '.\AxelibFrontend:\src\app' 
+  #   image: "user_front"
+  #   ports: 
+  #     - '4401:4401'
+  #   command: > 
+  #       bash -c "npm install && ng serve --host 0.0.0.0 --port 4401"
+      
   Eureka:
     container_name: serviceregistry
     build: .\Eureka_Server
@@ -42,13 +39,26 @@ services:
     image: "zuul"
     build: .\Zuul-Gateway
     ports:
-      - "8050:8050"
+      - "8763:8763"
     hostname: Zuul
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
     depends_on:
       - "Eureka"
- 
+
+  # Compte:
+  #   container_name: compte
+  #   build: .\MS-compte
+  #   ports:
+  #     - "8081:8081"
+  #   hostname: compte
+  #   environment:
+  #     - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_1:3306/comptes?autoReconnect=true&useSSL=false
+  #     - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+  #   image: "compte"
+  #   depends_on:
+  #     - Eureka
+  #     - docker-mysql_1
   
   # Mongo:
   #   container_name: Mongo

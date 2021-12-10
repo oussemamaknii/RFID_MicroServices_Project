@@ -5,6 +5,7 @@ import { User } from './User';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
+  private ZuulServerUrl = 'http://localhost:8763/user-service';
   private apiServerUrl = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) {}
@@ -18,14 +19,15 @@ export class UserService {
   }
 
   public updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(`${this.apiServerUrl}/User/${user.userId}`, user);
+    return this.httpClient.put<User>(
+      `${this.apiServerUrl}/User/${user.userId}`,
+      user
+    );
   }
 
   public deleteUser(userId: number | undefined): Observable<User> {
     console.log(userId);
-    
-    return this.httpClient.delete<any>(
-      `${this.apiServerUrl}/User/${userId}`
-    );
+
+    return this.httpClient.delete<any>(`${this.apiServerUrl}/User/${userId}`);
   }
 }
