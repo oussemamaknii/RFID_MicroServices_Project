@@ -1,9 +1,7 @@
 export class Fournisseur {
-  id!: string;
-  fournisseurId!: number;
+  _id!: string;
   name!: string;
   email!: string;
-  role!: string;
+  localisation!: string;
   imageUrl!: string;
-  uid!: string;
 }

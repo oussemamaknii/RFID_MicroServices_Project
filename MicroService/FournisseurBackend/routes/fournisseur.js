@@ -10,10 +10,11 @@ router.get("/", function (req, res, next) {
 });
 
 router.post("/", function (req, res, next) {
-  var nbr = req.body.phone;
   new fournisseur({
-    FullName: req.body.nom,
-    Phone: nbr,
+    name: req.body.name,
+    email: req.body.email,
+    localisation: req.body.localisation,
+    imageUrl: req.body.imageUrl,
   }).save((err, newfournisseur) => {
     if (err) console.log("error message : " + err);
     else {
@@ -35,10 +36,15 @@ router.post("/:id", function (req, res) {
   });
 });
 
-router.put("/:id", function (req, res) {
+router.put("/", function (req, res) {
   fournisseur.findByIdAndUpdate(
-    req.params.id,
-    { FullName: req.body.nom, Phone: req.body.phone },
+    req.body.id,
+    {
+      name: req.body.name,
+      email: req.body.email,
+      localisation: req.body.localisation,
+      imageUrl: req.body.imageUrl,
+    },
     function (err, fourni) {
       if (err) {
         console.log("error message : " + err);

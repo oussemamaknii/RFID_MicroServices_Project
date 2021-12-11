@@ -1,7 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var fournisseur = new Schema({
-    FullName: String,
-    Phone: Number
+  id: String,
+  name: String,
+  email: String,
+  localisation: String,
+  imageUrl: String,
 });
-module.exports = mongoose.model('fournisseurs', fournisseur);
+module.exports = mongoose.model("fournisseurs", fournisseur);

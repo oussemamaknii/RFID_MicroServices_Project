@@ -7,10 +7,9 @@ import { AppComponent } from './app.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, FournisseurComponent, UserComponent, HomeComponent],
+  declarations: [AppComponent, FournisseurComponent, UserComponent],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -26,14 +26,13 @@ export class FournisseurComponent implements OnInit {
       (response: Fournisseur[]) => {
         this.Fournisseurs = response;
       },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
+      (error: HttpErrorResponse) => {}
     );
   }
 
   public onAddFournisseur(addForm: NgForm): void {
     document.getElementById('add-Fournisseur-form')!.click();
+    console.log(addForm.value);
     this.FournisseurService.addFournisseur(addForm.value).subscribe(
       (response: Fournisseur) => {
         this.getFournisseurs();
@@ -52,8 +51,7 @@ export class FournisseurComponent implements OnInit {
       if (
         Fournisseur.name.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
         Fournisseur.email.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        Fournisseur.uid.toLowerCase().indexOf(key.toLowerCase()) !== -1 ||
-        Fournisseur.role.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        Fournisseur.localisation.toLowerCase().indexOf(key.toLowerCase()) !== -1
       ) {
         results.push(Fournisseur);
       }
@@ -64,7 +62,7 @@ export class FournisseurComponent implements OnInit {
     }
   }
 
-  public onDeleteFournisseur(FournisseurId: number | undefined): void {
+  public onDeleteFournisseur(FournisseurId: string | undefined): void {
     this.FournisseurService.deleteFournisseur(FournisseurId).subscribe(
       (response: any) => {
         this.getFournisseurs();
