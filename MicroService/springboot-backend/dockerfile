@@ -1,6 +1,6 @@
 FROM java:8
 
-EXPOSE 2626
+EXPOSE 8883
 
 ADD /target/springboot-backend-0.0.1-SNAPSHOT.jar event.jar
 
