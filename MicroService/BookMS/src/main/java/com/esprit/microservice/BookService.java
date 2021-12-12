@@ -18,12 +18,13 @@ Book existingBook = bookRepository.findById(id).get();
 existingBook.setUid(newBook.getUid());
 existingBook.setISBN(newBook.getISBN());
 existingBook.setbookName(newBook.getbookName());
-
+existingBook.setLink(newBook.getLink());
 
 return bookRepository.save(existingBook);
 } else
 return null;
 }
+
 public String deleteBook(int id) {
 if (bookRepository.findById(id).isPresent()) {
 bookRepository.deleteById(id);
@@ -32,4 +33,6 @@ return "Book Deleted";
 return "Book Not Deleted";
 
 }
+
+
 }
