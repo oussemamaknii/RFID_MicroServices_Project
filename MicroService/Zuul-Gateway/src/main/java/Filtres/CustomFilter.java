@@ -41,13 +41,13 @@ public class CustomFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		String requestUrl = ctx.getRequest().getRequestURL().toString();
-		log.info("CustomFilter: Redirection ");
 
 		if (requestUrl.equals("http://localhost:8763/user-service/User/customfilter")) {
+			log.info("CustomFilter: Redirection ");
 			String redirectUrl = "http://localhost:8763/user-service/User";
 			try {
-				ctx.getResponse().setHeader(HttpHeaders.LOCATION, redirectUrl);
 				ctx.getResponse().setStatus(HttpStatus.OK.value());
+				ctx.getResponse().sendRedirect(redirectUrl);
 				ctx.getResponse().flushBuffer();
 			} catch (IOException ex) {
 				System.out.println("Could not redirect to: " + redirectUrl);
