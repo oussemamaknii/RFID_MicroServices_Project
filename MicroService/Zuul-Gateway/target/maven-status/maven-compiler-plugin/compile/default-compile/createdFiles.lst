@@ -1,5 +1,6 @@
 Filtres\CustomFilter.class
 Filtres\ErrorFilter.class
+com\example\demo\FeignConfig.class
 com\example\demo\ZuulGatewayApplication.class
 Filtres\RouteFilter.class
 Filtres\PreFilter.class
