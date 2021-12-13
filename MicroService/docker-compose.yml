@@ -5,11 +5,23 @@ services:
     container_name: User_backend
     build: .\AxelibBackend
     ports:
-      - "9090:9090"
+      - "8080:8080"
     hostname: user_back
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
     image: "user_back"
+    depends_on:
+      - Eureka
+    
+  Concours_backend:
+    container_name: concours_backend
+    build: .\spring-boot-server
+    ports:
+      - "4646:4646"
+    hostname: concours_back
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "concours_back"
     depends_on:
       - Eureka
 
@@ -25,6 +37,18 @@ services:
     depends_on:
       - Eureka
 
+  Book:
+    container_name: book
+    build: .\BookMS
+    ports:
+      - "8083:8083"
+    hostname: book
+    environment:      
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "book"
+    depends_on:
+      - Eureka      
+
   Eureka:
     container_name: serviceregistry
     build: .\Eureka_Server
@@ -39,7 +63,7 @@ services:
     container_name: Event
     build: .\springboot-backend
     ports:
-      - "8080:8080"
+      - "9090:9090"
     hostname: event_back
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql:3306/evt?autoReconnect=true&useSSL=false
@@ -80,19 +104,7 @@ services:
   #   depends_on:
   #     - "Eureka"
 
-  # Compte:
-  #   container_name: compte
-  #   build: .\MS-compte
-  #   ports:
-  #     - "8081:8081"
-  #   hostname: compte
-  #   environment:
-  #     - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_1:3306/comptes?autoReconnect=true&useSSL=false
-  #     - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
-  #   image: "compte"
-  #   depends_on:
-  #     - Eureka
-  #     - docker-mysql_1
+  
   
   # Mongo:
   #   container_name: Mongo

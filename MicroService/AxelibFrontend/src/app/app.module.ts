@@ -14,6 +14,7 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { ConcoursComponent } from './concours/concours.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CreateBookComponent } from './create-book/create-book.component';
     UpdateEventComponent,
     EventDetailsComponent,
     CreateBookComponent,
+    ConcoursComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FormsModule, AppRoutingModule,],
   providers: [],

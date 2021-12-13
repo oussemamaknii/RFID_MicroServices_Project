@@ -6,7 +6,7 @@ import { User } from './User';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private ZuulServerUrl = 'http://localhost:8763/user-service';
-  private apiServerUrl = 'http://localhost:9090';
+  private apiServerUrl = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) {}
 

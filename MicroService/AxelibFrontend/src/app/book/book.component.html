@@ -1,30 +1,26 @@
 <h1>Book list </h1>
-<a class="btn btn-success" (click)="onClick('AnchorId')" >add book</a>
+<a class="btn btn-success" (click)="onClick('AnchorId')">add book</a>
 
 <form class="form-inline my-2 my-lg-0">
-  <input type="search" (ngModelChange)="searchBooks(key.value)" #key="ngModel" ngModel name="key"
-      id="searchName" class="form-control mr-sm-2" placeholder="Search Books..." required>
+   <input type="search" (ngModelChange)="searchBooks(key.value)" #key="ngModel" ngModel name="key" id="searchName"
+      class="form-control mr-sm-2" placeholder="Search Books..." required>
 </form>
 
 <div class="row">
    <div *ngFor="let b of listBooks">
-    <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
+      <div class="col-md-3">
+         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="{{b.link}}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">{{b.bookName}}</h5>
-              <p class="card-text">isbn: {{b.isbn}}   uid: {{b.uid}}</p>
-              <a (click)="deleteBook(b.isbn)" class="btn btn-danger">Delete</a>
+               <h5 class="card-title">{{b.bookName}}</h5>
+               <p class="card-text">isbn: {{b.isbn}} uid: {{b.uid}}</p>
+               <a (click)="deleteBook(b.isbn)" class="btn btn-danger">Delete</a>
             </div>
-          </div>
+         </div>
 
-    </div>
+      </div>
    </div>
 </div>
-
-
-
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

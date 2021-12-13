@@ -1,0 +1,4 @@
+com\bezkoder\spring\data\mongodb\model\Concours.class
+com\bezkoder\spring\data\mongodb\SpringBootDataMongodbApplication.class
+com\bezkoder\spring\data\mongodb\repository\ConcoursRepository.class
+com\bezkoder\spring\data\mongodb\controller\ConcoursController.class

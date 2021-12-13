@@ -1,0 +1,7 @@
+FROM java:8
+
+EXPOSE 4646
+
+ADD /target/spring-boot-data-mongodb-0.0.1-SNAPSHOT.jar concours-service.jar
+
+ENTRYPOINT ["java","-jar","concours-service.jar"]

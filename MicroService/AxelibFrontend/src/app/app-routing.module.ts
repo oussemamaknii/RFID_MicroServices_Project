@@ -9,9 +9,11 @@ import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { UpdateEventComponent } from './update-event/update-event.component';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { ConcoursComponent } from './concours/concours.component';
 
 const routes: Routes = [
   { path: 'users', component: UserComponent },
+  { path: 'concours', component: ConcoursComponent },
   { path: 'fournisseurs', component: FournisseurComponent },
   { path: 'books', component: BookComponent },
   { path: 'create-book', component: CreateBookComponent },
@@ -20,12 +22,14 @@ const routes: Routes = [
   { path: '', redirectTo: 'events', pathMatch: 'full' },
   { path: 'update-event/:id', component: UpdateEventComponent },
   { path: 'event-details/:id', component: EventDetailsComponent },
-  
 ];
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forRoot(routes,{ anchorScrolling: 'enabled'})],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, { anchorScrolling: 'enabled' }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

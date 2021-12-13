@@ -1,6 +1,6 @@
 FROM openjdk:11
 
-EXPOSE 9090
+EXPOSE 8080
 
 CMD java -classpath src/main/java AxelibApplication com.axelib
 
